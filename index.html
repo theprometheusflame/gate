@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirect</title>
+    <script>
+      const url = new URLSearchParams(location.search).get('url');
+
+      if (url) location.replace(url);
+    </script>
+  </head>
+  <body>
+    <p>If not redirected, <a href="#" id="manualLink">click here</a></p>
+    <script>
+      document.getElementById('manualLink').href = url;
+    </script>
+  </body>
+</html>
