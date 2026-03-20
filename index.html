@@ -4,17 +4,19 @@
     <meta charset="UTF-8" />
     <title>Redirect</title>
     <script>
-      const payload = location.hash.replace('#','');
-      
-      let base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
-        
-      while (base64.length % 4) {
-        base64 += '=';
-      }
-        
-      const url = decodeURIComponent(atob(base64));
+      const payload = new URLSearchParams(location.search).get('q');
 
-      location.replace(url);
+      if(payload) {
+        let base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+        
+        while (base64.length % 4) {
+          base64 += '=';
+        }
+        
+        const url = decodeURIComponent(atob(base64));
+
+        location.replace(url);
+      }
     </script>
   </head>
   <body>
