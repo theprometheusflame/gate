@@ -4,9 +4,17 @@
     <meta charset="UTF-8" />
     <title>Redirect</title>
     <script>
-      const url = new URLSearchParams(location.search).get('url');
+      const payload = location.path.split('/').pop();
+      
+      let base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+        
+      while (base64.length % 4) {
+        base64 += '=';
+      }
+        
+      const url = decodeURIComponent(atob(base64));
 
-      if (url) location.replace(url);
+      location.replace(url);
     </script>
   </head>
   <body>
