@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Redirect</title>
     <script>
-      const payload = location.path.split('/').pop();
+      const payload = location.hash.replace('#','');
       
       let base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
         
